@@ -1,15 +1,23 @@
 <?php
-require_once("Foto.php");
+require_once("Foto.php");   // Se requiere una foto o Imagen representativa del Establecimiento
+/**
+* Clase Establecimiento, la cual representa los establecimientos registrados
+*
+*/
 class Establecimiento {
-	private $idEstablecimiento;
-	private $nombre;
-	private $dirección;
-	private $emailPrivado;
-	private $emailPublico;
-	private $password;
-	private $foto;
+	private $idEstablecimiento; //Id o Codigo  de representacion del Establecimmiento
+	private $nombre; //Nombre representativo del Establecimiento
+	private $dirección;    //Direccion del Establecimiento
+	private $emailPrivado; //Email Privado del Establecimiento
+	private $emailPublico; //Email Publico del Establecimiento
+	private $password; // Contraseña para que el establecimiento pueda ingresar al aplicactivo como un tipo de usuario
+	private $foto; // Foto representativa del Establecimiento
 
 
+    /**
+    * Funcion Constructor de la Clase Establecimiento
+    *
+    */
 	public function __construct()
 	{
 		

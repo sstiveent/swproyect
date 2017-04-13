@@ -1,10 +1,19 @@
 <?php
-require_once("Foto.php");
+require_once("Foto.php"); // Se requiere una Foto o Imagen representativa de cada interes en Particular
+/**
+* Clase Interes, la cual representa un interes en particular
+*
+*/
 class Interes{
-	private $idInteres;
-	private $nombre;
-	private $foto;
+	private $idInteres;    //Id o Codigo de representacion de un interes en Particular
+	private $nombre;   //Nombre que representa el Interes
+	private $foto; // Foto o Imagen que representa el Interes
 
+
+/**
+* Funcion Constrcutor de la Clase Interes
+*
+*/
 	public function __construct()
 	{
 		

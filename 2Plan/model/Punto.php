@@ -1,12 +1,19 @@
 <?php
 
+/**
+* Clase Punto, la cual representa el Punatje dado a un Establecimiento por una Usuario consumidor
+*
+*/
 class Punto{
-	private $codigo;
-	private $establecimiento;
-	private $usuario;
-	private $puntos;
+	private $codigo;   //Codigo o Id de respresentacion del Puntaje dado
+	private $establecimiento;  //Establecimiento al cual se le da el Puntaje
+	private $usuario;  //Usuario consumidor que se encuentra registrado en el aplicativo
+	private $puntos; //puntaje dado por el Usuario al Establecimiento
 
-
+    /**
+    * Funcion Constructor de la Clase Punto
+    *
+    */
 	public function __construct()
 	{
 		

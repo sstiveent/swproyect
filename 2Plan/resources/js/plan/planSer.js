@@ -1,4 +1,5 @@
 "use strict";
+//Servicio que maneja el "Plan"
 app.service('planService', function ($http, $httpParamSerializerJQLike) {
 
 

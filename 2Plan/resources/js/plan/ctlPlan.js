@@ -1,4 +1,5 @@
 "use strict";
+//Controlador del Plan que se maneja en la aplicacion
 app.controller("planController", ["$scope","$routeParams",function($scope,$routeParams,PlanService) {
 
 	$scope.idPlan="idPlan='" + $routeParams.idPlan + "'";

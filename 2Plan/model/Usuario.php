@@ -1,17 +1,25 @@
 <?php
-require_once("Interes.php");
+require_once("Interes.php"); //Se Requiere un Listado de Intereses de los Usuarios
+/**
+* Clase Usuario, la cual respresenta un usuario comun o consumidor del aplicativo
+*
+*/
 class Usuario {
-	private $idUsuario;
-    private $nombre;
-    private $apellido;
-    private $fechaNacimiento;
-	private $idGoogle;
-	private $idFacebook;
-	private $email;
-	private $referido;
-	private $interes;
+	private $idUsuario; //Id o Codigo de representacion del usuario
+    private $nombre; //Nombre del usuario
+    private $apellido; //apellido del Usuario
+    private $fechaNacimiento; //Fecha de nacimiento del Usuario
+	private $idGoogle; //Id de la cuenta de Google del Usuairo
+	private $idFacebook; //Id de la cuenta de Facebook del Usuario
+	private $email; // Email del Usuario 
+	private $referido; //
+	private $interes; //Listado de Intereses del Usuario
 
 
+    /**
+    * Funcion Constructor de la Clase Usuario
+    *
+    */
 	public function __construct()
 	{
 		

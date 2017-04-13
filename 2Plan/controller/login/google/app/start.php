@@ -1,4 +1,5 @@
 <?php
+//Inicializacion del Plugin de conexion con Google
 session_start();
 require ("config/google.php");
 require_once ('google/lib/autoload.php');

@@ -1,5 +1,7 @@
 "use strict";
 
+//Servicio que maneja el Login de aplicativo
+
 app.service('loginService', function ($http, $httpParamSerializerJQLike) {
 
 

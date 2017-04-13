@@ -1,4 +1,5 @@
 <?php
+//Inicializacion del Plugin de conexion con Facebook
 session_start();
 
 require ("config/facebook.php");

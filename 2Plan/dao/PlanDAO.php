@@ -1,12 +1,26 @@
 <?php
 require_once("../model/Plan.php");
 require_once("config.php");
+
+/**
+* Clase PlanDAO, maneja la conexion y la interaccion con la base de Datos así,
+* manejando los datos que se almacenan en la base de datos, como el CRUD
+* Ejecuatando las consultas y extrayendo los datos correctos y filtrados desde la base de datos
+*/
 class PlanDAO{
 
+	/**
+	* Funcion Constructor PlanDAO
+	* 
+	*/
 	public function __construct()
 	{
 		
 	}
+
+	/**
+	* Metodo que lista los planes que son mas recomendados para el usuario dado por los intereses que este tenga
+	*/
 	function listarPlanesRecomendados($idUsuario){
 		global $db;
 		$usuario= $db->proteger($idUsuario);
@@ -49,6 +63,10 @@ class PlanDAO{
 
 		return $planes;
 	}
+
+	/**
+	*	Metodo que Busca los Planes recomendados de los usuarios
+	*/
 	function buscarPlanesRecomendados($idUsuario, $busqueda){
 		global $db;
 		$usuario= $db->proteger($idUsuario);

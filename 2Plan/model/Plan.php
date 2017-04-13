@@ -1,20 +1,29 @@
 <?php
-require_once("Establecimiento.php");
-require_once("Interes.php");
-require_once("Foto.php");
+require_once("Establecimiento.php"); //Se Requiere un establecimeinto registrado
+require_once("Interes.php"); //Se requiere un Usuario Registrado
+require_once("Foto.php");   //Se requiere una Foto que acompañe al Plan
+/**
+* Clase Plan, la cual representa un plan o actividad que pueden realizar las parejas
+*
+*/
 class Plan{
-	private $idPLan;
-	private $establecimiento;
-	private $nombre;
-	private $valor;
-	private $descuento;
-	private $fechaInicialDescuento;
-	private $fechaFinalDescuento;
-	private $fechaInicialDisponibilidad;
-	private $fechaFinalDisponibilidad;
-    private $interes;
-    private $foto;
+	private $idPLan; //id o codigo de representación del Plan
+	private $establecimiento; //establecimiento al cual pertence o presenta el plan
+	private $nombre;  //Nombre del Plan
+	private $valor; //Valor monetario del Plan Ofertado
+	private $descuento; // Descuento que se ofrece sobre el Plan
+	private $fechaInicialDescuento; //Fecha a partir desde la cual se puede obtener el descuento sobre el plan
+	private $fechaFinalDescuento;  //Fecha final hasta la cual se puede obtener el descuento sobre el plan
+	private $fechaInicialDisponibilidad; //Fecha a partir desde la cual estara vigente el plan
+	private $fechaFinalDisponibilidad; //Fecha hasta la cual estara vigente el Plan
+    private $interes; //Listado de Intereses sobre el Plan
+    private $foto; //Foto o Imagen del Plan
 
+
+    /**
+    * función Constructor de la Clase "Plan"
+    *
+    */
 	function __construct()
 	{
 		

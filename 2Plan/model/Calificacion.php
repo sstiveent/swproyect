@@ -1,14 +1,21 @@
 <?php
-require_once("Usuario.php");
-require_once("Establecimiento.php");
+require_once("Usuario.php");    //Se requiere un Usuario para realizar la Calificacion
+require_once("Establecimiento.php");    // Se requiere un Establecimiento al cual se le realiza una calificacion
+/**
+* Clase Calificacion, la cual representa un dato Calificativo con Comentario de un Usuario particular sobre un Establecimeinto
+*
+*/
 class Calificacion{
-	private $idCalificacion;
-	private $usuario;
-	private $establecimiento;
-	private $Calificacion;
-	private $comentario;
+	private $idCalificacion; // Id o Codigo de respresentacion de la Claificacion hecha
+	private $usuario; //Usuario quien realiza dicha Calificacion
+	private $establecimiento; //Establecimiento al cual se le realiza la calificacion
+	private $Calificacion; //Calificacion hecha
+	private $comentario; //Comentario realizado en la Calificacion
 
-
+    /**
+    * Funcion Constructor de la clase Calificacion
+    *
+    */
 	public function __construct()
 	{
 		

@@ -1,11 +1,21 @@
 <?php
 
+/**
+* Clase Foto, la cual representa las imagenes de Establecimientos, Intereses, Planes
+*
+*/
 class Foto {
-	private $idFoto;
-	private $url;
+	private $idFoto; // Id o Codigo de Representación de la Foto o Imagen
+	private $url; //Url, Direccion donde se almaceno la imagen
 	private $alt;
 
 
+
+
+    /**
+    * Función Constructor de la Clase "Foto"
+    *
+    */
 	public function __construct()
 	{
 		
