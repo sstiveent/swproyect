@@ -1,0 +1,74 @@
+
+body {
+  padding-top: 50px;
+}
+
+.navbar-fixed-top {
+  border: 0;
+}
+.navbar-inverse{
+  background-color: rgb(0, 208, 188) !important; 
+}
+.search{
+  margin-top: 10px;
+}
+.title{
+  color: white !important;
+  list-style: none;
+  margin-left: 15px !important;
+  font-family: 'Leckerli One', cursive;
+  font-size: 22pt;
+}
+.sidebar {
+  display: none;
+}
+.name{
+  font-size: 13pt;
+  color: black;
+  text-align: center;
+}
+.profile-image{
+  align-content: center;
+}
+.listDescription{
+  font-size: 9pt;
+  height: 30px;
+}
+.navbar-right>li>a{
+  color: white !important;
+}
+.precio{
+  color: grey;
+font-size: 18px;  
+}
+@media (min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+  }
+}
+
+
+.main {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+.main .page-header {
+  margin-top: 0;
+}
+
+

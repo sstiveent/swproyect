@@ -19,13 +19,14 @@
 	<script type="text/javascript" src="resources/js/angular.min.js"></script>
 	<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
 
-
-	<script type="text/javascript" src="resources/js/app.js"></script>
+	<script type="text/javascript" src="resources/js/route.js"></script>
+	<script type="text/javascript" src="resources/js/animate.js"></script>
+	<script type="text/javascript" src="resources/js/appLogin.js"></script>
 	<script type="text/javascript" src="resources/js/login/loginSer.js"></script>
 	<script type="text/javascript" src="resources/js/login/ctlLogin.js"></script>
 </head>
 
-<body ng-app="appMaster">
+<body ng-app="appLogin">
 
 	<div class="site-wrapper">
 
@@ -50,36 +51,31 @@
 					<h1 class="cover-heading">¿Sin plan?</h1>
 					<p class="lead">En 2Plan encuentras un montón de planes para realizar con tu pareja</p>
 					<p class="lead">
-						<?php if (!isset($_SESSION['facebook']) && !isset($_SESSION['google'])): ?>
+
+						
+						<div class="row">
 							<a href={{facebookUrl.url}} class="btn btn-lg btn-primary">Iniciar sesión con Facebook!</a>
-							<br>
+						</div>
+						<div class="row">
+
 							<a href={{googleUrl.url}} class="btn btn-lg btn-danger">Iniciar sesión con Google!</a>
+						</div>
+						
 
-						<?php else: ?>
-							<p>
-								<?php 
-								echo "Bienvenido, ";
-								if(isset($_SESSION['facebook']))
-        echo "Login con fb"; //$facebook_user->getName(); 
-    if(isset($_SESSION['google']))
-        echo "Login con google";//$user->name; 
-    ?>
-</p>
-<a href="controller/login/logout.php" class="btn btn-danger">Cerrar sesión</a>
-<?php endif; ?>
-</p>
-</div>
+						
+					</p>
+				</div>
 
-<div class="mastfoot">
-	<div class="inner">
-		<p> <a href="http://2plan.grupodimo.co">2Plan</a> Todos los derechos reservados &copy; 2017</p>
+				<div class="mastfoot">
+					<div class="inner">
+						<p> <a href="http://2plan.grupodimo.co">2Plan</a> Todos los derechos reservados &copy; 2017</p>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
 	</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
 </body>
 </html>
