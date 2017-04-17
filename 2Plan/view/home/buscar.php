@@ -16,13 +16,14 @@
 		</div>
 		<div class="col-md-2"></div>
 	</div>
-	<div class="row" style="margin-top: 40px;" ng-init="buscarPlanes();">
+	<div class="row" style="margin-top: 40px;" ng-init="buscarPlanes(); listarIntereses();">
 		<!--- esto se repite desde aca -->
+		<h3 style="text-align: center;">{{msj}}</h3>
 		<div class="col-md-3" ng-repeat="obj in planes">
-			<div class="thumbnail">
-				<img src="http://www.europlayas.es/static/81609.JPG" alt="imagen" class="img-responsive">
-				<div class="caption">
-					<h4>{{obj.nombreEstablecimiento}}</h4>
+			<div class="thumbnail" style="background: url({{obj.img}}); background-size: cover; height: 300px;">
+				<!--<img ng-src="{{obj.img}}" alt="imagen" class="img-responsive" style="max-height: 148px;">-->
+				<div class="caption" style="margin-top: 148px; background-color: rgba(0,0,0,0.5); color:white;">
+					<h4>{{obj.nombrePlan}}</h4>
 					<p class="listDescription text-justify">{{obj.descripcion}}</p>
 					<p>
 						<div class="row">
@@ -30,7 +31,7 @@
 								<a href="#!/plan/{{obj.idPlan}}" class="btn btn-primary">Ver</a> 
 							</div>
 							<div class="col-xs-6">
-								<p class="precio text-right">${{obj.valor}}</p>
+								<p class="precio text-right" style="color: white;">${{obj.valor}}</p>
 							</div>
 						</div>
 					</p>

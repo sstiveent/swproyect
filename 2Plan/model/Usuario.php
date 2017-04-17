@@ -1,5 +1,6 @@
 <?php
 require_once("Interes.php"); //Se Requiere un Listado de Intereses de los Usuarios
+require_once("Ciudad.php"); //Se Requiere la ciudad del Usuario
 /**
 * Clase Usuario, la cual respresenta un usuario comun o consumidor del aplicativo
 *
@@ -14,6 +15,7 @@ class Usuario {
 	private $email; // Email del Usuario 
 	private $referido; //
 	private $interes; //Listado de Intereses del Usuario
+    private $ciudad; //Ciudad donde vive el usuario
 
 
     /**
@@ -239,6 +241,30 @@ class Usuario {
     public function _setInteres($interes)
     {
         $this->interes = $interes;
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of ciudad.
+     *
+     * @return mixed
+     */
+    public function getCiudad()
+    {
+        return $this->ciudad;
+    }
+
+    /**
+     * Sets the value of ciudad.
+     *
+     * @param mixed $ciudad the ciudad
+     *
+     * @return self
+     */
+    public function _setCiudad($ciudad)
+    {
+        $this->ciudad = $ciudad;
 
         return $this;
     }

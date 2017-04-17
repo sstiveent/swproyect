@@ -3,7 +3,7 @@ var app = angular.module("appHome", ['ngRoute']);
 
 app.config(function ($routeProvider) {
     $routeProvider
-            .when('/plan/:idplan', {
+            .when('/plan/:idPlan', {
                 controller: 'planController',
                 templateUrl: 'view/home/plan.php'
             })

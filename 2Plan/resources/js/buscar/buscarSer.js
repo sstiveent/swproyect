@@ -7,8 +7,7 @@ this.buscarPlanes = function (busqueda) {
             method: "post",
             url: "controller/buscarPlanes.php",
             data: $httpParamSerializerJQLike({
-                buscar:busqueda,
-                idUsuario:1
+                buscar:busqueda
             }),
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function mySucces(response) {

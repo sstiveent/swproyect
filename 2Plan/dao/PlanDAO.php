@@ -21,7 +21,7 @@ class PlanDAO{
 	/**
 	* Metodo que lista los planes que son mas recomendados para el usuario dado por los intereses que este tenga
 	*/
-	function listarPlanesRecomendados($idUsuario){
+	public function listarPlanesRecomendados($idUsuario){
 		global $db;
 		$usuario= $db->proteger($idUsuario);
 
@@ -39,10 +39,13 @@ class PlanDAO{
 		`Plan`.`nombre` nombrePlan,
 		`Plan`.`valor` valor,
 		`Plan`.`descuento` descuento,
-		`Plan`.`descripcion` descripcion
+		`Plan`.`descripcion` descripcion,
+		`Foto`.`url`
 		FROM `Plan` 
 		INNER JOIN `Plan_has_Interes` ON `Plan`.`idPlan` = `Plan_has_Interes`.`Plan_idPlan`
 		INNER JOIN `Establecimiento`ON `Establecimiento`.`idEstablecimiento` = `Plan`.`Establecimiento`
+		INNER JOIN `Plan_has_Foto` ON `Plan`.`idPlan` = `Plan_has_Foto`.`Plan_idPlan` 
+		INNER JOIN `Foto` ON `Plan_has_Foto`.`Foto_idFoto` = `Foto`.`idFoto`
 		WHERE 1=1 
 		".$whereIntereses." GROUP BY `idPlan` ORDER BY `num` DESC";
 
@@ -55,7 +58,8 @@ class PlanDAO{
 				'nombrePlan' => $fila['nombrePlan'],
 				'valor' => $fila['valor'],
 				'descripcion' => $fila['descripcion'],
-				'descuento' => $fila['descuento'] );
+				'descuento' => $fila['descuento'],
+				'img' => $fila['url'] );
 			array_push($planes, $plan);
 
 		}
@@ -67,7 +71,7 @@ class PlanDAO{
 	/**
 	*	Metodo que Busca los Planes recomendados de los usuarios
 	*/
-	function buscarPlanesRecomendados($idUsuario, $busqueda){
+	public function buscarPlanesRecomendados($idUsuario, $busqueda){
 		global $db;
 		$usuario= $db->proteger($idUsuario);
 		$buscar = $db->proteger($busqueda);
@@ -83,14 +87,21 @@ class PlanDAO{
 		}
 		$primero=true;
 		$whereBusqueda ="";
-		foreach ($keys as $valor) {
-			if(strlen($valor)>2){
-				if($primero)
-					$whereBusqueda = " `Establecimiento`.`nombre` LIKE '%".$valor."%'  OR `Plan`.`nombre` LIKE '%".$valor."%'  OR `Plan`.`descripcion` LIKE '%".$valor."%'";
-				else
-					$whereBusqueda .= " OR `Establecimiento`.`nombre` LIKE '%".$valor."%'  OR `Plan`.`nombre` LIKE '%".$valor."%'  OR `Plan`.`descripcion` LIKE '%".$valor."%'";
-				$primero = false;
+		if(sizeof($keys)>1){
+			foreach ($keys as $valor) {
+				if(strlen($valor)>2){
+					if($primero)
+						$whereBusqueda = " `Establecimiento`.`nombre` LIKE '%".$valor."%'  OR `Plan`.`nombre` LIKE '%".$valor."%'  OR `Plan`.`descripcion` LIKE '%".$valor."%'";
+					else
+						$whereBusqueda .= " OR `Establecimiento`.`nombre` LIKE '%".$valor."%'  OR `Plan`.`nombre` LIKE '%".$valor."%'  OR `Plan`.`descripcion` LIKE '%".$valor."%'";
+					$primero = false;
+				}else{
+
+				}
 			}
+		}
+		else{
+			$whereBusqueda = " `Establecimiento`.`nombre` LIKE '%".$keys[0]."%'  OR `Plan`.`nombre` LIKE '%".$keys[0]."%'  OR `Plan`.`descripcion` LIKE '%".$keys[0]."%'";
 		}
 
 		$sql2="SELECT COUNT(*) num, 
@@ -99,16 +110,17 @@ class PlanDAO{
 		`Plan`.`nombre` nombrePlan,
 		`Plan`.`valor` valor,
 		`Plan`.`descuento` descuento,
-		`Plan`.`descripcion` descripcion
+		`Plan`.`descripcion` descripcion,
+		`Foto`.`url`
 		FROM `Plan` 
 		INNER JOIN `Plan_has_Interes` ON `Plan`.`idPlan` = `Plan_has_Interes`.`Plan_idPlan`
 		INNER JOIN `Establecimiento`ON `Establecimiento`.`idEstablecimiento` = `Plan`.`Establecimiento`
+		INNER JOIN `Plan_has_Foto` ON `Plan`.`idPlan` = `Plan_has_Foto`.`Plan_idPlan` 
+		INNER JOIN `Foto` ON `Plan_has_Foto`.`Foto_idFoto` = `Foto`.`idFoto`
 		WHERE (
 		".$whereBusqueda."
 		) AND
 		(1=1 ".$whereIntereses.") GROUP BY `idPlan` ORDER BY `num` DESC";
-
-		
 		
 		$result2=  $db->ejecutarConsulta($sql2);
 		$planes = array();
@@ -119,7 +131,8 @@ class PlanDAO{
 				'nombrePlan' => $fila['nombrePlan'],
 				'valor' => $fila['valor'],
 				'descripcion' => $fila['descripcion'],
-				'descuento' => $fila['descuento'] );
+				'descuento' => $fila['descuento'],
+				'img' => $fila['url'] );
 			array_push($planes, $plan);
 
 		}
@@ -127,6 +140,42 @@ class PlanDAO{
 
 		return $planes;
 	}
+
+	public function obtenerPlan($idPlan){
+		global $db;
+		$plan= $db->proteger($idPlan);
+
+		$sql1="SELECT `Plan`.`nombre` nombrePlan,
+		`valor`, `descuento`,
+		`descripcion`,
+		`Establecimiento`.`nombre` nombreEstablecimiento, `direccion`,
+		`email_publico`,
+		`url`,
+		`alt` 
+		FROM `Plan` INNER JOIN `Establecimiento` ON `Plan`.`Establecimiento` = `Establecimiento`.`idEstablecimiento` 
+		INNER JOIN `Plan_has_Foto` ON `Plan`.`idPlan` = `Plan_has_Foto`.`Plan_idPlan` 
+		INNER JOIN `Foto` ON `Plan_has_Foto`.`Foto_idFoto` = `Foto`.`idFoto` WHERE `Plan` .`idPlan` = ".$idPlan.";";
+		$result=  $db->ejecutarConsulta($sql1);
+		if($fila=$db->obtenerFila($result)){
+			$alt =  !is_null($fila['alt'])?$fila['alt']:"";
+			$response = array(
+				'nombrePlan'=>$fila[0],
+				'valor'=>$fila[1],
+				'descuento'=>$fila[2],
+				'descripcion'=>$fila[3],
+				'nombreEstablecimiento'=>$fila[4],
+				'direccion'=>$fila[5],
+				'email'=>$fila[6],
+				'url'=>$fila[7],
+				'alt'=>$alt
+				);
+			return $response;
+		}else {
+			return 0;
+		}
+		
+	}
+
 
 }
 

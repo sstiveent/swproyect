@@ -55,6 +55,17 @@ class BaseDatos
             return null;
         }
     }
+    public function ejecutarMultiConsulta($consulta) {
+        $this->conectar();
+        $sql = $consulta;
+        if ($resultado = mysqli_multi_query($this->conexion, $sql)) {
+            $this->desconectar();
+            return $resultado;
+        }else{
+            $this->desconectar();
+            return null;
+        }
+    }
     // Traer el array de datos
     public function obtenerFila($resultado) {
         return mysqli_fetch_array($resultado);

@@ -3,12 +3,11 @@
 app.service('planService', function ($http, $httpParamSerializerJQLike) {
 
 
-
 	this.obtenerPlan = function (idPlan) {       
 
         var promise = $http({
             method: "post",
-            url: "controller/obtenerPlan",
+            url: "controller/obtenerPlan.php",
             data: $httpParamSerializerJQLike({
                 idPlan:idPlan
             }),
