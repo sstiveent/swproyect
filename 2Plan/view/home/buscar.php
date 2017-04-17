@@ -20,7 +20,7 @@
 		<!--- esto se repite desde aca -->
 		<h3 style="text-align: center;">{{msj}}</h3>
 		<div class="col-md-3" ng-repeat="obj in planes">
-			<div class="thumbnail" style="background: url({{obj.img}}); background-size: cover; height: 300px;">
+			<div class="thumbnail" style="background: url({{obj.img}}); background-size: cover; height: 300px; background-position: center;">
 				<!--<img ng-src="{{obj.img}}" alt="imagen" class="img-responsive" style="max-height: 148px;">-->
 				<div class="caption" style="margin-top: 148px; background-color: rgba(0,0,0,0.5); color:white;">
 					<h4>{{obj.nombrePlan}}</h4>
