@@ -16,7 +16,7 @@
 		</div>
 		<div class="col-md-2"></div>
 	</div>
-	<div class="row" style="margin-top: 40px;" ng-init="buscarPlanes(); listarIntereses();">
+	<div class="row" style="margin-top: 40px;" ng-init="buscarPlanes();">
 		<!--- esto se repite desde aca -->
 		<h3 style="text-align: center;">{{msj}}</h3>
 		<div class="col-md-3" ng-repeat="obj in planes">
@@ -31,7 +31,7 @@
 								<a href="#!/plan/{{obj.idPlan}}" class="btn btn-primary">Ver</a> 
 							</div>
 							<div class="col-xs-6">
-								<p class="precio text-right" style="color: white;">${{obj.valor}}</p>
+								<p class="precio text-right" style="color: white;">${{obj.valor  | number:0}}</p>
 							</div>
 						</div>
 					</p>

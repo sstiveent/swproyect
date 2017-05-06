@@ -15,10 +15,10 @@ if(!is_null($register)){
 if($register==0){
 	$_SESSION['register']=0;
 	$_SESSION['intereses']= serialize($dao->obtenerInteresesUsuario($_SESSION['idUsuario']));
-	header("Location:http://localhost/sw3/swproyect/2Plan/home.php");
+	header("Location:https://2Plan.grupodimo.co/home.php");
 }else{
 	$_SESSION['register'] = is_numeric($register)? $register: 1;
-	header("Location:http://localhost/sw3/swproyect/2Plan/register.php#!/".$_SESSION['register']);
+	header("Location:https://2Plan.grupodimo.co/register.php#!/".$_SESSION['register']);
 }
 
 

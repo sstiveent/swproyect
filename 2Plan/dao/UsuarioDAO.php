@@ -32,7 +32,7 @@ class UsuarioDAO{
 		
 		foreach ($intereses as $key => $value) {
 			$interes = $db->proteger($value);
-			$sql.=" INSERT INTO `Usuario_has_interes` (`Usuario_idUsuario`, `Interes_idInteres`) VALUES (".$usuarioP.", ".$interes."); ";
+			$sql.=" INSERT INTO `Usuario_has_Interes` (`Usuario_idUsuario`, `Interes_idInteres`) VALUES (".$usuarioP.", ".$interes."); ";
 		}
 			$result1 =  $db->ejecutarMultiConsulta($sql);
 		return $result1? 1:-1;
@@ -72,7 +72,6 @@ class UsuarioDAO{
 			$fila = $db->obtenerFila($result1);
 			if(!is_null($fila['fecha_nacimiento']) && !is_null($fila['Ciudad_idCiudad'])){
 				$numF2 = sizeof($this->obtenerInteresesUsuario($fila['idUsuario']));
-				echo $numF2;
 				if($numF2 > 0){
 					return 0;
 				}else{

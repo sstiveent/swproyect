@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("../DAO/UsuarioDAO.php");
+require_once("../dao/UsuarioDAO.php");
 $dao = new UsuarioDAO();
 if(isset($_SESSION['idUsuario'])){
 	$intereses =  $dao->obtenerInteresesUsuario($_SESSION['idUsuario']);

@@ -8,7 +8,7 @@ require_once ('google/lib/autoload.php');
 $client = new Google_Client();
 $client->setClientId($configGoogle['app_id']);
 $client->setClientSecret($configGoogle['app_secret']);
-$client->setRedirectUri('http://localhost/sw3/swproyect/2Plan/controller/login/loginGoogle.php');
+$client->setRedirectUri('http://2plan.grupodimo.co/controller/login/loginGoogle.php');
 $client->addScope("email");
 $client->addScope("profile");
 $service = new Google_Service_Oauth2($client);

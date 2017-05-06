@@ -24,7 +24,17 @@ require_once('redirect.php');
 	<script type="text/javascript" src="resources/js/appLogin.js"></script>
 	<script type="text/javascript" src="resources/js/login/loginSer.js"></script>
 	<script type="text/javascript" src="resources/js/login/ctlLogin.js"></script>
-
+	<script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "WebSite",
+			"name": "2Plan | Planes rom&aacute;nticos para parejas",
+			"alternateName": "Encuentra tus planes rom&aacute;nticos en 2Plan",
+			"url": "https://2plan.grupodimo.co",
+			"image": "http://2plan.grupodimo.co/resources/images/cover.jpg",
+			"description": "En 2plan encuentras diversos planes rom&aacute;nticos, cenas, hoteles, p&iacute;cnic, sitios tur&iacute;cos, para estar con tu pareja"
+		}
+	</script>
 </head>
 
 <body ng-app="appLogin" ng-include="'view/index/login.php'" style="overflow-x: hidden; overflow-y: hidden;">
