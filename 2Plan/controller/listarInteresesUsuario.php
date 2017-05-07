@@ -3,12 +3,10 @@ session_start();
 require_once("../dao/UsuarioDAO.php");
 $dao = new UsuarioDAO();
 if(isset($_SESSION['idUsuario'])){
-	$intereses =  $dao->obtenerInteresesUsuario($_SESSION['idUsuario']);
-	echo json_encode($intereses);
-	
+    $intereses =  $dao->obtenerInteresesUsuario($_SESSION['idUsuario']);
+    echo json_encode($intereses);
 }
-else
-	echo -2;
-	
-
+else{
+    echo -2;
+}
 ?>

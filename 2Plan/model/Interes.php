@@ -86,7 +86,7 @@ class Interes{
     *
     * @return self
     */
-    private function _setFoto($foto)
+    public function _setFoto($foto)
     {
         $this->foto = $foto;
 

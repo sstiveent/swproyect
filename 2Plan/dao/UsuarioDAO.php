@@ -1,19 +1,21 @@
 <?php
 require_once("../model/Usuario.php");
 require_once("config.php");
+define("GOOGLE", "Google");
+define("FACEBOOK", "Facebook");
 
 class UsuarioDAO{
 
     public function __construct()
     {
-        
+
     }
     public function obtenerIdUsuario($id, $serviceLogin){
         global $db;
         $idP = $db->proteger($id);
-        if($serviceLogin == "Google"){
+        if($serviceLogin == GOOGLE){
             $sql1="SELECT `idUsuario` FROM `Usuario` WHERE `idGoogle` = ".$idP.";";
-        }else if ($serviceLogin == "Facebook"){
+        }else if ($serviceLogin == FACEBOOK){
             $sql1="SELECT `idUsuario` FROM `Usuario` WHERE `idFacebook` = ".$idP.";";
         }else{
             echo "Acceso no autorizado";
@@ -29,7 +31,7 @@ class UsuarioDAO{
 
         $sql="";
 
-        foreach ($intereses as $key => $value) {
+        foreach ($intereses as $value) {
             $interes = $db->proteger($value);
             $sql.=" INSERT INTO `Usuario_has_Interes` (`Usuario_idUsuario`, `Interes_idInteres`) VALUES (".$usuarioP.", ".$interes."); ";
         }
@@ -54,13 +56,14 @@ class UsuarioDAO{
     public function estadoRegistro($id, $serviceLogin){
         global $db;
         $idP = $db->proteger($id);
-        if($serviceLogin == "Google"){
+        if($serviceLogin == GOOGLE){
             $sql1="SELECT * FROM `Usuario` WHERE `idGoogle` = ".$idP.";";
-        }else if ($serviceLogin == "Facebook"){
+        }else if ($serviceLogin == FACEBOOK){
             $sql1="SELECT * FROM `Usuario` WHERE `idFacebook` = ".$idP.";";
         }else{
-            echo "Acceso no autorizado";
-            exit;
+            //http_response_code(400);
+            //exit;
+            return;
         }
         $result1 =  $db->ejecutarConsulta($sql1);
         $numF = $db->numeroFilas($result1);
@@ -70,20 +73,16 @@ class UsuarioDAO{
             $fila = $db->obtenerFila($result1);
             if(!is_null($fila['fecha_nacimiento']) && !is_null($fila['Ciudad_idCiudad'])){
                 $numF2 = sizeof($this->obtenerInteresesUsuario($fila['idUsuario']));
-                if($numF2 > 0){
-                    return 0;
-                }else{
-                    return 2;
-                }
+                return $numF2 > 0 ? 0:2;
             }else{
                 return 1;
             }
         }
-        return $ciudades;
     }
     public function registrarDatosPeril($user, $serviceLogin){
         global $db;
-        if($serviceLogin == "Google"){
+        
+        if($serviceLogin == GOOGLE){
             $nombre = $db->proteger($user->getNombre());
             $apellido  = $db->proteger($user->getApellido());
             $fechaNac = $db->proteger($user->getFechaNacimiento());
@@ -94,7 +93,7 @@ class UsuarioDAO{
             $result2 =  $db->ejecutarConsulta($sql2);
             $numF2 = $db->numeroFilas($result2);
             if($numF2==0){
-                $sql= "INSERT INTO `Usuario` (`idUsuario`, `nombre`, `apellido`, `fecha_nacimiento`, `idGoogle`, `idFacebook`, `email`, `Referido`, `Ciudad_idCiudad`) VALUES (NULL, '".$nombre."', '".$apellido."', '".$fechaNac."', '".$id."', NULL, '".$email."', NULL, '".$ciudad."');";
+                $sql= "INSERT INTO `Usuario` (`idUsuario`, `nombre`, `apellido`, `fecha_nacimiento`, `idGoogle`, `email`, `Ciudad_idCiudad`) VALUES (NULL, '".$nombre."', '".$apellido."', '".$fechaNac."', '".$id."', '".$email."', '".$ciudad."');";
                 $result =  $db->ejecutarConsulta($sql);
             }else{
                 $sql= "UPDATE `Usuario` SET 
@@ -106,12 +105,9 @@ class UsuarioDAO{
                 WHERE `idGoogle`= '".$id."';";
                 $result =  $db->ejecutarConsulta($sql);
             }
-            if($result){
-                return 1;
-            }
-            else
-                return -1;
-        }else if($serviceLogin == "Facebook"){
+            return $result? 1:-1;
+
+        }else if($serviceLogin == FACEBOOK){
             $nombre = $db->proteger($user->getNombre());
             $apellido  = $user->getApellido();
             $fechaNac = $db->proteger($user->getFechaNacimiento());
@@ -122,7 +118,7 @@ class UsuarioDAO{
             $result2 =  $db->ejecutarConsulta($sql2);
             $numF2 = $db->numeroFilas($result2);
             if($numF2<1){
-                $sql= "INSERT INTO `Usuario` (`idUsuario`, `nombre`, `apellido`, `fecha_nacimiento`, `idGoogle`, `idFacebook`, `email`, `Referido`, `Ciudad_idCiudad`) VALUES (NULL, '".$nombre."', '".$apellido."', '".$fechaNac."', NULL, '".$id."', '".$email."', NULL, '".$ciudad."');";
+                $sql= "INSERT INTO `Usuario` (`idUsuario`, `nombre`, `apellido`, `fecha_nacimiento`,  `idFacebook`, `email`, `Ciudad_idCiudad`) VALUES (NULL, '".$nombre."', '".$apellido."', '".$fechaNac."',  '".$id."', '".$email."', '".$ciudad."');";
                 $result =  $db->ejecutarConsulta($sql);
             }else{
                 $sql= "UPDATE `Usuario` SET 
@@ -134,11 +130,7 @@ class UsuarioDAO{
                 WHERE `idFacebook`= '".$id."';";
                 $result =  $db->ejecutarConsulta($sql);
             }
-            if($result){
-                return 1;
-            }
-            else
-                return -1;
+            return $result? 1:-1;
         }else{
             return -1;
         }

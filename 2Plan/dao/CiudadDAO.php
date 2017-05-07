@@ -6,12 +6,10 @@ class CiudadDAO{
 
     public function __construct()
     {
-
     }
 
     function listarCiudades(){
         global $db;
-
         $sql1="SELECT  `idCiudad`,`nombre` FROM `Ciudad`;";
         $result1=  $db->ejecutarConsulta($sql1);
         $ciudades = array();

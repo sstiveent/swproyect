@@ -1,7 +1,7 @@
 "use strict";
 app.controller('buscarController', function ($scope, $window, $timeout, buscarService) {
 
-	$scope.buscarPlanes=function(busqueda){
+	$scope.buscarPlanes=function(){
 		buscarService.buscarPlanes($scope.busqueda).then(function(response){
 			$scope.planes=response.data;
 			if($scope.planes ==""){
@@ -10,7 +10,6 @@ app.controller('buscarController', function ($scope, $window, $timeout, buscarSe
 			if($scope.planes =="-2"){
 				$window.location = "index.php";
 			}
-			console.log(response);
 		});
 	}
 	

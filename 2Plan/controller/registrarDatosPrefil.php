@@ -56,14 +56,14 @@ if( $idCiudad && $fechaNac)
 	echo 0;
 }
 
-ValidarCiudad($idCiudad){
-	if(isset ($idCiudad) && is_numeric($idCiudad){
-		return idCiudad;
+function ValidarCiudad($idCiudad){
+	if(isset ($idCiudad) && is_numeric($idCiudad)){
+		return $idCiudad;
 	} else{
 		return null;
 	}
 }
-ValidarFecNac($fechaNac){
+function ValidarFecNac($fechaNac){
 	if(isset($fechaNac)){
 		return $fechaNac;
 	} else

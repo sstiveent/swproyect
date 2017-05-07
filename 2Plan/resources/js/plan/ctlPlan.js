@@ -26,7 +26,6 @@ app.controller("planController", ['$scope','$window','$routeParams','planService
 	};
 	$scope.obtenerComentarios = function () {
 		planService.obtenerComentarios($scope.idPlan).then(function (response) {
-			console.log(response);
 			$scope.comentarios=response.data;
 		});
 	};
@@ -45,7 +44,7 @@ app.controller("planController", ['$scope','$window','$routeParams','planService
 
 
 	$scope.calificar = function (calificacion) {
-		planService.calificar($scope.idPlan, calificacion).then(function (response) {
+		planService.calificar($scope.idPlan, calificacion).then(function () {
 			$scope.obtenerMiCalificacion();
 			$scope.obtenerPlan();
 			

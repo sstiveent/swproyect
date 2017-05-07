@@ -2,7 +2,7 @@
 
 //Servicio que maneja el Login de aplicativo
 
-app.service('loginService', function ($http, $httpParamSerializerJQLike) {
+app.service('loginService', function ($http) {
 
 
 

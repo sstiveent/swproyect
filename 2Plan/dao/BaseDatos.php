@@ -36,7 +36,7 @@ class BaseDatos
             printf("Falló la conexión: %s\n", mysqli_connect_error());
             exit();
         }else{
-            $charset = mysqli_set_charset ( $this->conexion , "utf8" );
+            mysqli_set_charset ($this->conexion , "utf8");
         }
 
 
@@ -74,15 +74,13 @@ class BaseDatos
     // Traer cantidad de filas
     public function numeroFilas($resultado) {
         return mysqli_num_rows($resultado);
-        //return $resultado->num_rows;
     }
 
     public function proteger($string) {
         $this->conectar();
+        $escape = mysqli_real_escape_string ($this->conexion , $string);
         $this->desconectar();
-        return mysqli_real_escape_string ($this->conexion , $string);
-        
-
+        return $escape;
     }
     public function desconectar(){
         mysqli_close($this->conexion);

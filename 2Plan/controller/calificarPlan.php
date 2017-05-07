@@ -4,21 +4,20 @@ require_once("../dao/PlanDAO.php");
 $plan = validarPlan($_POST['idPlan']);
 $calificacion = validarCalificacion($_POST['calificacion']);
 if(isset($_SESSION['idUsuario']) && $plan && $calificacion){
-	$dao = new PlanDAO();
-	echo $dao->calificarPlan($plan, $_SESSION['idUsuario'], $calificacion);
-
+    $dao = new PlanDAO();
+    echo $dao->calificarPlan($plan, $_SESSION['idUsuario'], $calificacion);
 }else{
-	echo "0";
+    echo "0";
 }
 
-validarCalificacion($calificacion){
+function validarCalificacion($calificacion){
     if(isset($calificacion) && is_numeric($calificacion)){
         return $calificacion;
     }else{
         return null;
     }
 }
-validarPlan($idPlan){
+function validarPlan($idPlan){
     if(isset($idPlan) && is_numeric($idPlan)){
         return $idPlan;
     } else{

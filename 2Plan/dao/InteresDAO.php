@@ -4,12 +4,11 @@ require_once("config.php");
 
 class InteresDAO{
 
-	public function __construct()
-	{
-		
-	}
+    public function __construct()
+    {
+    }
 
-	function listarInteresesAll(){
+    function listarInteresesAll(){
         global $db;
 
         $sql1="SELECT  

@@ -1,24 +1,26 @@
 <?php
 session_start();
 require_once("../dao/PlanDAO.php");
-if(isset($_SESSION['idUsuario'])){
+$idUsuario = $_SESSION['idUsuario']?$_SESSION['idUsuario'] : null ;
+if(isset($idUsuario)){
     $dao = new PlanDAO();
-    $buscar = validarBuscar($_POST['buscar']);
+    $buscar = validarBuscar(isset($_POST['buscar'])?$_POST['buscar']:null);
     if($buscar){
-        $response = $dao->buscarPlanesRecomendados($_SESSION['idUsuario'], trim($buscar));
-        if(sizeof($response)>0)
+        $response = $dao->buscarPlanesRecomendados($idUsuario, trim($buscar));
+        if(sizeof($response)>0){
             echo json_encode($response);
+        }
     }else{
-        $response = $dao->listarPlanesRecomendados($_SESSION['idUsuario']);
-        if(sizeof($response)>0)
+        $response = $dao->listarPlanesRecomendados($idUsuario);
+        if(sizeof($response)>0){
             echo json_encode($response);
+        }
     }
 }else{
     echo -2;
 }
 
-validarBuscar($buscar)
-{
+function validarBuscar($buscar){
     if(isset($buscar) && trim($buscar) !=""){
         return $buscar;
     } 

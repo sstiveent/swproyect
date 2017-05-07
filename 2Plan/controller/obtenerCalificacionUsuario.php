@@ -2,7 +2,7 @@
 session_start();
 require_once("../dao/PlanDAO.php");
 if(isset($_SESSION['idUsuario'])){
-    $plan = validarPlan()$_POST['idPlan'];
+    $plan = validarPlan($_POST['idPlan']);
     if($plan){
         $dao = new PlanDAO;
         $calificacion = $dao->obtenerCalificacionUsuario($_POST['idPlan'], $_SESSION['idUsuario']);
@@ -20,7 +20,7 @@ if(isset($_SESSION['idUsuario'])){
         echo json_encode($estrellas);
     }
 }
-validarPlan($idPlan){
+function validarPlan($idPlan){
     if(isset($idPlan) && is_numeric($idPlan)){
         return $idPlan;
     } else{

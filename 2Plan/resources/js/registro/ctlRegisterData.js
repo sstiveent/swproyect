@@ -1,11 +1,9 @@
 app.controller('registerDataController', function($scope,$window,registerDataService) {
 	$scope.pageClass = 'page dataRegister';
-	//$scope.idCiudad.type = $scope.typeOptions[0].value;
 	$scope.idCiudad=null;
 
 	$scope.registrarDatosPerfil = function () {
 		registerDataService.registrarDatosPerfil($scope.idCiudad, $scope.fechaNac).then(function (response) {
-			console.log(response);
 			if(response.data =="1"){
 				$window.location.href = '#!/2';
 			}
@@ -28,7 +26,6 @@ app.controller('registerDataController', function($scope,$window,registerDataSer
 	$scope.listarCiudades = function () {
 		registerDataService.listarCiudades().then(function (response) {
 			$scope.ciudades=response.data;
-			console.log(response);
 			
 
 		});

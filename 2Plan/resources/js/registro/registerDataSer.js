@@ -25,7 +25,7 @@ app.service('registerDataService', function ($http, $httpParamSerializerJQLike) 
     };
 
 
-    this.listarCiudades = function (idCiudad, fechaNac) {       
+    this.listarCiudades = function () {       
 
         var promise = $http({
             method: "post",
