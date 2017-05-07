@@ -1,10 +1,12 @@
 <?php
 session_start();
 require_once("../dao/PlanDAO.php");
+$idPlan = validarPlan($_POST['idPlan');
+
 if(isset($_SESSION['idUsuario'])){
-	if(isset($_POST['idPlan'])&& is_numeric($_POST['idPlan'])){
+	if($idPlan){
 		$dao=new PlanDAO();
-		$response= $dao->obtenerPlan($_POST['idPlan']);
+		$response= $dao->obtenerPlan($idPlan);
 		if(is_array($response)){
 			echo json_encode($response);
 		}
@@ -17,5 +19,14 @@ if(isset($_SESSION['idUsuario'])){
 	
 }else{
 	echo -2;
+}
+validarPlan ($idPlan){
+	if(isset($idPlan && is_numeric($idPlan){
+		return $idPlan;
+	}
+	else
+	{
+		return null;
+	}
 }
 ?>

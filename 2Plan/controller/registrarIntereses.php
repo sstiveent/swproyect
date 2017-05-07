@@ -1,8 +1,10 @@
 <?php
 session_start();
 require_once("../dao/UsuarioDAO.php");
+$interes = ValidarIntereses($_POST['intereses']);
+
 if(isset($_SESSION['idUsuario'])){
-	if(isset($_POST['intereses'])){
+	if(isset($interes)){
 		$intereses = array();
 		$interesesPost = $_POST['intereses'];
 		foreach ($interesesPost as $key => $value) {
@@ -28,4 +30,11 @@ if(isset($_SESSION['idUsuario'])){
 	}
 }else
 echo -2;
+ValidarIntereses($interes){
+	if(isset($interes)){
+		return $interes;
+	} else {
+		return null;
+	}
+}
 ?>
