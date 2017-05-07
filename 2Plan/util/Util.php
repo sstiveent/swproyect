@@ -6,7 +6,6 @@ class Util
 	{
 	}
 
-
 	public function compararFechas($primera, $segunda)
 	{
 		$valoresPrimera = explode ("-", $primera);   
@@ -23,11 +22,8 @@ class Util
 		$diasPrimeraJuliano = gregoriantojd($mesPrimera, $diaPrimera, $anyoPrimera);  
 		$diasSegundaJuliano = gregoriantojd($mesSegunda, $diaSegunda, $anyoSegunda);     
 
-		if(!checkdate($mesPrimera, $diaPrimera, $anyoPrimera)){
-    // "La fecha ".$primera." no es v&aacute;lida";
-			return 0;
-		}elseif(!checkdate($mesSegunda, $diaSegunda, $anyoSegunda)){
-    // "La fecha ".$segunda." no es v&aacute;lida";
+  		//return 0 if is invalid
+		if(!checkdate($mesPrimera, $diaPrimera, $anyoPrimera) || !checkdate($mesSegunda, $diaSegunda, $anyoSegunda)){
 			return 0;
 		}else{
 			return  $diasPrimeraJuliano - $diasSegundaJuliano;

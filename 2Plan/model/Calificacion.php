@@ -6,20 +6,20 @@ require_once("Establecimiento.php");    // Se requiere un Establecimiento al cua
 *
 */
 class Calificacion{
-	private $idCalificacion; // Id o Codigo de respresentacion de la Claificacion hecha
-	private $usuario; //Usuario quien realiza dicha Calificacion
-	private $establecimiento; //Establecimiento al cual se le realiza la calificacion
-	private $Calificacion; //Calificacion hecha
-	private $comentario; //Comentario realizado en la Calificacion
+    private $idCalificacion; // Id o Codigo de respresentacion de la Claificacion hecha
+    private $usuario; //Usuario quien realiza dicha Calificacion
+    private $establecimiento; //Establecimiento al cual se le realiza la calificacion
+    private $Calificacion; //Calificacion hecha
+    private $comentario; //Comentario realizado en la Calificacion
 
     /**
     * Funcion Constructor de la clase Calificacion
     *
     */
-	public function __construct()
-	{
-		
-	}
+    public function __construct()
+    {
+      
+    }
 
 
 

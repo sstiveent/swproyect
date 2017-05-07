@@ -3,14 +3,12 @@ session_start();
 require_once("../dao/UsuarioDAO.php");
 require_once("../util/Util.php");
 $util = new Util();
+$idCiudad = ValidarCiudad($_POST['idCiudad']);
+$fechaNac = ValidarFecNac($_POST['fechaNac']);
 
-if(
-	isset($_POST['idCiudad']) &&
-	isset($_POST['fechaNac']) &&
-	is_numeric($_POST['idCiudad'])
-	)
+if( $idCiudad && $fechaNac)
 {
-	$fecha= date("Y-m-d", strtotime($_POST['fechaNac']));
+	$fecha= date("Y-m-d", strtotime($fechaNac));
 	$fechaActual = date("Y-m-d");
 	$dias = $util->compararFechas($fecha, $fechaActual);
 	if($dias <= -4745 && $dias > -36000 ){
@@ -22,7 +20,7 @@ if(
 			$user->_setFechaNacimiento($fecha);
 			$user->_setIdGoogle($_SESSION['idGoogle']);
 			$user->_setEmail($_SESSION['email']);
-			$user->_setCiudad($_POST['idCiudad']);
+			$user->_setCiudad($idCiudad );
 
 			$respuesta = $dao->registrarDatosPeril($user, "Google");
 			if($respuesta==1){
@@ -37,10 +35,10 @@ if(
 			$user= new Usuario();
 			$user->_setNombre($_SESSION['nombre']);
 			$user->_setApellido($_SESSION['apellido']);
-			$user->_setFechaNacimiento($_POST['fechaNac']);
+			$user->_setFechaNacimiento($fechaNac);
 			$user->_setIdFacebook($_SESSION['idFacebook']);
 			$user->_setEmail($_SESSION['email']);
-			$user->_setCiudad($_POST['idCiudad']);
+			$user->_setCiudad($idCiudad );
 
 			$respuesta = $dao->registrarDatosPeril($user, "Facebook");
 			if($respuesta==1){
@@ -56,5 +54,21 @@ if(
 	}
 }else{
 	echo 0;
+}
+
+ValidarCiudad($idCiudad){
+	if(isset ($idCiudad) && is_numeric($idCiudad){
+		return idCiudad;
+	} else{
+		return null;
+	}
+}
+ValidarFecNac($fechaNac){
+	if(isset($fechaNac)){
+		return $fechaNac;
+	} else
+	{
+		return null;
+	}
 }
 ?>

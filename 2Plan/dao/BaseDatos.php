@@ -10,7 +10,7 @@ class BaseDatos
     private $servidor;  //Variable que Guarda el Servidor que maneja las conexiones y la interaccion
     private $puerto;    //Variable que maneja el puerto de conexion
     private $usuario;   //Usuario qye se conectara a la base de datos
-    private $clave; //Clave o Contraseña que se requiere para la conexion a la base de datos
+    private $clave;     //Clave o Contraseña que se requiere para la conexion a la base de datos
     private $dbName;    //Variable que representa la base de datos con la cual se va a interactuar
     private $conexion;  //conexion a la base de datos
 
@@ -79,8 +79,8 @@ class BaseDatos
 
     public function proteger($string) {
         $this->conectar();
-        return mysqli_real_escape_string ($this->conexion , $string);
         $this->desconectar();
+        return mysqli_real_escape_string ($this->conexion , $string);
         
 
     }
