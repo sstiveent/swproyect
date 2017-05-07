@@ -1,5 +1,5 @@
-projectKey=proyectoB7
+projectKey=swProject
 serverUrl=http://localhost:9000
-dashboardUrl=http://localhost:9000/dashboard/index/proyectoB7
-ceTaskId=AVvgWYVB0xWfGn5Wbjgi
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AVvgWYVB0xWfGn5Wbjgi
+dashboardUrl=http://localhost:9000/dashboard/index/swProject
+ceTaskId=AVvkZgLM0xWfGn5Wbjg3
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AVvkZgLM0xWfGn5Wbjg3

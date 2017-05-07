@@ -26,6 +26,8 @@ require_once('redirect.php');
     <script type="text/javascript" src="resources/js/buscar/ctlBuscar.js"></script>
     <script type="text/javascript" src="resources/js/plan/planSer.js"></script>
     <script type="text/javascript" src="resources/js/plan/ctlPlan.js"></script>
+    <script type="text/javascript">var cont = 0;</script>
+
 </head>
 <body ng-app="appHome">
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -52,8 +54,8 @@ require_once('redirect.php');
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
                 <?php if(isset($_SESSION['idUsuario'])):?>
-                    <img  src="<?php echo $_SESSION['foto'];?>" alt="profileImage" class="center-block img-circle img-responsive">
-                    <p class="name""><?php echo $_SESSION['nombre']." ".$_SESSION['apellido']; ?></p>
+                    <img  src="<?php echo $_SESSION['foto'];?>" alt="profileImage" class="center-block img-circle img-responsive" onclick="imagen(1);">
+                    <p class="name"><?php echo $_SESSION['nombre']." ".$_SESSION['apellido']; ?></p>
                     <br>
                     <h5>Intereses</h5>
                     <ul>
@@ -64,6 +66,16 @@ require_once('redirect.php');
                         ?>
                     </ul>
                 <?php endif;?>
+                <script language="JavaScript" type="text/javascript">
+                function imagen(num)
+                    {   
+                        cont = cont+num
+                        if (cont > 4){
+                            cont = 0;
+                            alert("Desarrollado por: Juliana Dávila, Stiven Triana, Luis Garcés V0.5.4");
+                        }
+                    }
+                </script>
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <div ng-view></div>

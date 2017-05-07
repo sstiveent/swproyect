@@ -27,7 +27,7 @@
                 <div class="col-sm-offset-2 col-sm-10">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" id="check" onChange="comprobarAll(); comprobarCheck();"> Acepto los t&eacute;rminos y condiciones
+                            <input type="checkbox" id="check" onChange="comprobarAll(); comprobarCheck();"> Acepto los <a href="docs/Terminos%20y%20condiciones%20de%20uso.pdf"  target="_blank" style="color: #049a40;">t&eacute;rminos y condiciones</a>
                         </label>
                     </div>
                 </div>
